@@ -3,16 +3,16 @@ echo "------------------------------- Well come flip coin simulator ------------
 
 #CONSTANT
 isHEAD=0
-NUMBER_OF_COIN=2
+NUMBER_OF_COIN=3
 
 #TO DECLARE DICTIONARY
-declare -A doubletFlip
+declare -A tripletFlip
 
 #TO USER INPUT
 read -p "Enter the Number of Coin Flip : " numberOfCoinFlip
 
-#TO FUNCTION DOUBLET
-function doublet()
+#TO FUNCTION TRIPLET
+function triplet()
 {
    for(( count=0; count<$numberOfCoinFlip; count++ ))
    do
@@ -27,20 +27,21 @@ function doublet()
             coinSide+=T
          fi
 		done
-		((doubletFlip[$coinSide]++))
+		((tripletFlip[$coinSide]++))
 		coinSide=""
 	done
 
-#TO TOTAL PERCENTAGE OF DOUBLET COMBINATION
-function totalDoubletPercentage()
+#TO TOTAL PERCENTAGE OF TRIPLET COMBINATION
+function totalTripletPercentage()
 {
    for index in ${!doubletFlip[@]}
    do
-      doubletFlip[$index]=`echo "scale=2; ${doubletFlip[$index]} * 100 / $numberOfCoinFlip" | bc`
+      tripletFlip[$index]=`echo "scale=2; ${tripletFlip[$index]} * 100 / $numberOfCoinFlip" | bc`
    done
 
 }
 
 #TO FUNCTION CALL 
-doublet
-totalDoubletPercentage
+triplet
+
+totalTripletPercentage
